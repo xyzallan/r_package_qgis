@@ -13,7 +13,9 @@ build_fn_code <- function(alg, arguments, main_output) {
       fn_name <- glue::glue("{alg$provider[1]}_{alg_id}")
     }
   }
-
+  
+  fn_name = gsub(" ", "_", fn_name)
+  
   fn_arguments <- purrr::pmap(arguments,
                               function(name, ...){
                                   return(glue::glue("{convert_to_R_arg_names(name)} = qgisprocess::qgis_default_value()"))
