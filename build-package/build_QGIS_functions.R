@@ -47,7 +47,9 @@ for (i in 1:nrow(algs)) {
   } else {
     file_name <- glue::glue("{alg$provider}_{fix_algorithm_id(alg$algorithm_id)}")
   }
-
+  
+  file_name = gsub(" ", "_", file_name)
+  
   tryCatch(
     error = function(cnd) {
       print(glue::glue("Cant generate function - {alg$provider}_{alg$algorithm_id}."))
